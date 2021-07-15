@@ -1,0 +1,23 @@
+{
+  "name": "inpage",
+  "version": "10.2.0",
+  "description": "",
+  "main": "demo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "*",
+    "clipboard": "^2.0.8",
+    "copy-image-clipboard": "^1.0.1",
+    "file-saver": "^2.0.5",
+    "fs": "*",
+    "html-to-image": "^1.6.2",
+    "jszip": "^3.6.0",
+    "jszip-utils": "^0.1.0",
+    "request": "^2.88.2",
+    "save-as": "^0.1.8"
+  }
+}
