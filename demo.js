@@ -13,7 +13,7 @@ x2.setAttribute(
 
 // / ***************************************
 console.log("Fffffffffff");
-chrome.runtime.onMessage.addListener(receiver);
+// chrome.runtime.onMessage.addListener(receiver);
 console.log("recived");
 // Callback for when a message is received
 
@@ -63,55 +63,80 @@ let myScript = document.createElement("script");
 myScript.setAttribute("src", "bundle.js");
 document.head.appendChild(myScript);
 
-const request = require("request");
-const cheerio = require("cheerio");
-const fs = require("fs");
-var JSZip = require("jszip");
-var JSZipUtils = require("jszip-utils");
-var FileSaver = require("file-saver");
+// const request = require("request");
+// const cheerio = require("cheerio");
+// const fs = require("fs");
+// var JSZip = require("jszip");
+// var JSZipUtils = require("jszip-utils");
+// var FileSaver = require("file-saver");
 let url = window.location.toString();
 
 window.imgArray = [];
+window.original_img = [];
 
 function get_data() {
-    request(url, (error, response, html) => {
-        if (!error && response.statusCode == 200) {
-            const $ = cheerio.load(html);
-            console.log($);
-            // console.log($("#titleSection").text())
-            window.title = $("#titleSection").text().trim();
-            console.log(title);
-            $("#imageBlock").each((i, el) => {
-                window.imges = $(el).find("img");
-                // console.log(imges[0].attribs.src);
-                console.log(imges);
-                console.log(imges.length);
-                var videoTags = document.getElementsByTagName("video");
-                for (var i = 0; i < videoTags.length; i++) {
-                    console.log(videoTags.item(i).currentSrc);
-                }
-            });
-            console.log(typeof imges);
-            for (let index = 0; index < imges.length; index++) {
-                const element = imges[index];
-                let img_link = element.attribs.src;
-                let r = /\_SS40\_|\_SX\d+\_SY\d+\_[a-zA-Z0-9,]+\_\./g;
-                if (
-                    !img_link.includes("play-icon-overlay") &&
-                    img_link.includes(".jpg")
-                ) {
-                    let resize_image = img_link.replace(r, "");
-                    imgArray.push(resize_image);
-                    // console.log(resize_image);
-                    // imgArray.push(element.attribs.src)
-                }
-            }
+    // request(url, (error, response, html) => {
+    //     if (!error && response.statusCode == 200) {
+    //         const $ = cheerio.load(html);
+    //         console.log($);
+    // console.log($("#titleSection").text())
+    /// window.title = $("#titleSection").text().trim();
+    window.title = document.getElementById("titleSection").innerText.trim();
 
-            console.log("Scraping Done...", imgArray);
+    console.log(title);
+    console.log(document.getElementById("imageBlock"));
+    console.log(typeof document.getElementById("imageBlock"));
+    let el = document.getElementById("imageBlock");
+    /// document.getElementById("imageBlock").each((i, el) => {
+    // window.imges = $(el).find("img");
+    console.log(el.getElementsByTagName("img"));
+    window.imges = el.getElementsByTagName("img");
+    // console.log(imges[0].attribs.src);
+    console.log(imges);
+    console.log(imges.length);
+    var videoTags = document.getElementsByTagName("video");
+    for (var i = 0; i < videoTags.length; i++) {
+        console.log(videoTags.item(i).currentSrc);
+    }
+    /// });
+
+    ///
+    // $("#imageBlock").each((i, el) => {
+    //     window.imges = $(el).find("img");
+    //     // console.log(imges[0].attribs.src);
+    //     console.log(imges);
+    //     console.log(imges.length);
+    //     var videoTags = document.getElementsByTagName("video");
+    //     for (var i = 0; i < videoTags.length; i++) {
+    //         console.log(videoTags.item(i).currentSrc);
+    //     }
+    // });
+    ///
+    console.log(typeof imges);
+    for (let index = 0; index < imges.length; index++) {
+        const element = imges[index];
+        let img_link = element.currentSrc;
+        console.log(img_link);
+        let r = /\_SS40\_|\_SX\d+\_SY\d+\_[a-zA-Z0-9,]+\_\./g;
+        if (
+            !img_link.includes("play-icon-overlay") &&
+            img_link.includes(".jpg")
+        ) {
+            original_img.push(imges[index].currentSrc);
+
+            let resize_image = img_link.replace(r, "");
+            imgArray.push(resize_image);
+            // console.log(resize_image);
+            // imgArray.push(element.attribs.src)
         }
-    });
-    // console.log(res);
+    }
+
+    console.log("Scraping Done...", imgArray);
+    console.log("Scraping Done...dvf", original_img);
 }
+// });
+// console.log(res);
+// }
 // get_data();
 
 function get_data2() {
@@ -179,59 +204,64 @@ function get_data4() {
     }
 }
 // get_data4()
-function1();
+// function1();
 
 let loc = window.location.hostname;
-let final_list2 = JSON.parse(localStorage.getItem("final_list2"));
-for (let index = 0; index < final_list2.length; index++) {
-    console.log("hi", final_list2);
-    if (!(final_list2[index].checked_not == "")) {
-        // console.log("noooo",final_list2[index].website_list);
+// let final_list2 = JSON.parse(localStorage.getItem("final_list2"));
+// for (let index = 0; index < final_list2.length; index++) {
+//     console.log("hi", final_list2);
+//     if (!(final_list2[index].checked_not == "")) {
+//         console.log("noooo", final_list2[index].website_list);
 
-        var regex = new RegExp("www." + final_list2[index].website_list, "gi");
-        console.log(loc.match(regex));
-        if (loc.match(regex) !== null) {
-            // console.log("matcheeee");
-            run_js(loc);
-            break;
-        }
-    } else {
-        console.log(
-            "❌❌❌❌❌❌❌❌❌❌you have disabled chrome extension for this website.❌❌❌❌❌❌❌❌❌❌"
-        );
-        break;
-    }
-}
-
+//         var regex = new RegExp("www." + final_list2[index].website_list, "gi");
+//         console.log(loc.match(regex));
+//         if (loc.match(regex) !== null) {
+//             // console.log("matcheeee");
+//             run_js(loc);
+//             break;
+//         }
+//     } else {
+//         console.log(
+//             "❌❌❌❌❌❌❌❌❌❌you have disabled chrome extension for this website.❌❌❌❌❌❌❌❌❌❌"
+//         );
+//         break;
+//     }
+// }
+// let loc="www.amazon.in"
 // console.log(final_list2);
+run_js(loc);
+console.log(loc);
 function run_js(loc) {
     switch (loc) {
-        case "www.amazon.in":
+        
+
+        case (loc.match(/^www.amazon/) || {}).input:
+        // case "www.amazon.co.uk":
             get_data();
             ///amazon
-            window.ul1 = document.getElementById("ivThumbs");
-            window.ul2 = document.getElementById("leftCol");
-            ul1.insertAdjacentHTML("beforeend", html_button);
-            ul2.insertAdjacentHTML("afterbegin", html_button);
+            // window.ul1 = document.getElementById("ivThumbs");
+            // window.ul2 = document.getElementById("leftCol");
+            // ul1.insertAdjacentHTML("beforeend", html_button);
+            // ul2.insertAdjacentHTML("afterbegin", html_button);
             break;
-        case "www.flipkart.com":
+        case (loc.match(/^www.flipkart./) || {}).input:
             get_data2();
-            window.ul3 = document.querySelector("._331-kn");
-            console.log(ul3);
-            ul3.insertAdjacentHTML("afterend", html_button);
+            // window.ul3 = document.querySelector("._331-kn");
+            // console.log(ul3);
+            // ul3.insertAdjacentHTML("afterend", html_button);
 
             break;
-        case "www.aliexpress.com":
+        case (loc.match(/^www.aliexpress./) || {}).input:
             get_data3("category");
-            window.ul4 = document.querySelector(".product-title-text");
-            console.log(ul4);
-            ul4.insertAdjacentHTML("afterend", html_button);
+            // window.ul4 = document.querySelector(".product-title-text");
+            // console.log(ul4);
+            // ul4.insertAdjacentHTML("afterend", html_button);
 
             break;
-        case "www.alibaba.com":
+        case (loc.match(/^www.alibaba./) || {}).input:
             get_data4();
-            window.ul5 = document.querySelector(".detail-title-section");
-            console.log(ul5);
+            // window.ul5 = document.querySelector(".detail-title-section");
+            // console.log(ul5);
             ///error : ablibaba is not giving permission for manipulate DOM
             // ul5.insertAdjacentHTML("afterend", html_button);
             break;
@@ -240,25 +270,26 @@ function run_js(loc) {
             break;
     }
 }
-function function1() {
-    ///amazon
-    //  window.ul1 = document.getElementById("ivThumbs");
-    // window.ul2 = document.getElementById("leftCol");
 
-    ///flipkart
-    //  window.ul3 = document.querySelector("._331-kn");
-    //  console.log(ul3);
+// function function1() {
+///amazon
+//  window.ul1 = document.getElementById("ivThumbs");
+// window.ul2 = document.getElementById("leftCol");
 
-    ///aliexpress
-    // window.ul4 = document.querySelector(".product-title-text");
-    // console.log(ul4);
+///flipkart
+//  window.ul3 = document.querySelector("._331-kn");
+//  console.log(ul3);
 
-    ///alibaba
-    // window.ul5 = document.querySelector(".detail-title-section");
-    // console.log(ul5);
+///aliexpress
+// window.ul4 = document.querySelector(".product-title-text");
+// console.log(ul4);
 
-    // console.log(ul1);
-    html_button = `
+///alibaba
+// window.ul5 = document.querySelector(".detail-title-section");
+// console.log(ul5);
+
+// console.log(ul1);
+html_button = `
     <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -286,74 +317,102 @@ function function1() {
 
     `;
 
-    // ul1.insertAdjacentHTML("beforeend", html_button);
-    // ul2.insertAdjacentHTML("afterbegin", html_button);
+// ul1.insertAdjacentHTML("beforeend", html_button);
+// ul2.insertAdjacentHTML("afterbegin", html_button);
 
-    // ul3.insertAdjacentHTML("afterend", html_button);
+// ul3.insertAdjacentHTML("afterend", html_button);
 
-    // ul4.insertAdjacentHTML("afterend", html_button);
+// ul4.insertAdjacentHTML("afterend", html_button);
 
-    ///error : ablibaba is not giving permission for manipulate DOM
-    // ul5.insertAdjacentHTML("afterend", html_button);
+///error : ablibaba is not giving permission for manipulate DOM
+// ul5.insertAdjacentHTML("afterend", html_button);
 
-    // let btn=document.getElementById("btn")
-    // btn.addEventListener("click",download_all_photo("original"))
+// let btn=document.getElementById("btn")
+// btn.addEventListener("click",download_all_photo("original"))
 
-    // console.log(ul1);
-}
-// function1();
-// setTimeout(function () {
-//     download_zip();
-// }, 3000);
+// console.log(ul1);
+// }
 
-let download_zip1 = document.getElementById("download_zip");
-download_zip1.addEventListener("click", download_zip);
+// let download_zip1 = document.getElementById("download_zip");
+// download_zip1.addEventListener("click", download_zip);
 // download_zip();
-function download_zip() {
-    console.log("in download_zip");
-    console.log(imgArray);
-    let zip = new JSZip();
-    var count = 0;
-    let updated_title;
-    let updated_folder_title;
-    let extension_name = "--->Download_photo";
-    if (title.length > 110) {
-        updated_title = title.substring(0, 100) + extension_name;
-        updated_folder_title = title.substring(0, 20) + extension_name;
-        console.log(updated_title, "uuuuu");
-    } else {
-        updated_title = title;
+
+// function download_zip() {
+//     console.log("in download_zip");
+//     console.log(imgArray);
+//     let zip = new JSZip();
+//     var count = 0;
+//     let updated_title;
+//     let updated_folder_title;
+//     let extension_name = "--->Download_photo";
+//     if (title.length > 110) {
+//         updated_title = title.substring(0, 100) + extension_name;
+//         updated_folder_title = title.substring(0, 20) + extension_name;
+//         console.log(updated_title, "uuuuu");
+//     } else {
+//         updated_title = title;
+//     }
+
+//     // var zipFilename = `${updated_folder_title}.zip`;
+//     var zipFilename = "zipfolder.zip";
+//     // var urls = [
+//     //   'http://image-url-1',
+//     //   'http://image-url-2',
+//     //   'http://image-url-3'
+//     // ];
+
+//     imgArray.forEach(function (url) {
+//         console.log("images_list----");
+//         // loading a file and add it in a zip file
+//         JSZipUtils.getBinaryContent(url, function (err, data) {
+//             // if (err) {
+//             //     throw err; // or handle the error
+//             // }
+//             var filename = `${count}.${updated_title}.jpg`;
+//             console.log(filename);
+//             // var filename = `${count}.hihihi.jpg`;
+//             zip.folder(zipFilename).file(filename, data, { binary: true });
+//             // zip.file(filename, data, { binary: true });
+//             count++;
+//             if (count == imgArray.length) {
+//                 // var zipFile = zip.generate({ type: "blob" });
+//                 // FileSaver.saveAs(zipFile, zipFilename);
+
+//                 zip.generateAsync({ type: "blob" }).then(function (content) {
+//                     FileSaver.saveAs(content, zipFilename);
+//                 });
+//             }
+//         });
+//     });
+// }
+
+chrome.runtime.sendMessage({
+    from: "content",
+    subject: "showPageAction",
+});
+
+// Listen for messages from the popup.
+chrome.runtime.onMessage.addListener((msg, sender, response) => {
+    // First, validate the message's structure.
+    if (msg.from === "popup" && msg.subject === "DOMInfo") {
+        // Collect the necessary data.
+        // (For your specific requirements `document.querySelectorAll(...)`
+        //  should be equivalent to jquery's `$(...)`.)
+
+        console.log("SCdfbb", imgArray);
+        console.log("SCdfbb", title);
+        var domInfo = {
+            images_list: imgArray,
+            image_title: title,
+            original_images_list: original_img,
+            
+        };
+
+        // Directly respond to the sender (popup),
+        // through the specified callback.
+
+        // code goes here
+        response(domInfo);
+        // console.log("paage loaded");
     }
-
-    // var zipFilename = `${updated_folder_title}.zip`;
-    var zipFilename = "zipfolder.zip";
-    // var urls = [
-    //   'http://image-url-1',
-    //   'http://image-url-2',
-    //   'http://image-url-3'
-    // ];
-
-    imgArray.forEach(function (url) {
-        console.log("images_list----");
-        // loading a file and add it in a zip file
-        JSZipUtils.getBinaryContent(url, function (err, data) {
-            // if (err) {
-            //     throw err; // or handle the error
-            // }
-            var filename = `${count}.${updated_title}.jpg`;
-            console.log(filename);
-            // var filename = `${count}.hihihi.jpg`;
-            zip.folder(zipFilename).file(filename, data, { binary: true });
-            // zip.file(filename, data, { binary: true });
-            count++;
-            if (count == imgArray.length) {
-                // var zipFile = zip.generate({ type: "blob" });
-                // FileSaver.saveAs(zipFile, zipFilename);
-
-                zip.generateAsync({ type: "blob" }).then(function (content) {
-                    FileSaver.saveAs(content, zipFilename);
-                });
-            }
-        });
-    });
-}
+});

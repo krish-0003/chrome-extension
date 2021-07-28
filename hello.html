@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./thumb/slick-theme.css" />
+        <link rel="stylesheet" href="./thumb/slick.css" />
+        <link rel="stylesheet" href="./hello.css" />
+
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="slider-for">
+            <div>
+                <img
+                    src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png"
+                    alt=""
+                />
+            </div>
+            <div>
+                <img
+                    src="https://homepages.cae.wisc.edu/~ece533/images/serrano.png"
+                    alt=""
+                />
+            </div>
+            <div>
+                <img
+                    src="https://homepages.cae.wisc.edu/~ece533/images/fruits.png"
+                    alt=""
+                />
+            </div>
+            <div>
+                <img
+                    src="https://homepages.cae.wisc.edu/~ece533/images/fruits.png"
+                    alt=""
+                />
+            </div>
+            <div>
+                <img
+                    src="https://homepages.cae.wisc.edu/~ece533/images/fruits.png"
+                    alt=""
+                />
+            </div>
+        </div>
+        <div class="slider-nav">
+            <div>
+                <img
+                    src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png"
+                    alt=""
+                />
+            </div>
+            <div>
+                <img
+                    src="https://homepages.cae.wisc.edu/~ece533/images/serrano.png"
+                    alt=""
+                />
+            </div>
+            <div>
+                <img
+                    src="https://homepages.cae.wisc.edu/~ece533/images/fruits.png"
+                    alt=""
+                />
+            </div>
+            <div>
+                <img
+                    src="https://homepages.cae.wisc.edu/~ece533/images/fruits.png"
+                    alt=""
+                />
+            </div>
+            <div>
+                <img
+                    src="https://homepages.cae.wisc.edu/~ece533/images/fruits.png"
+                    alt=""
+                />
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="./thumb/slick.js"></script>
+        <script>
+            $(document).ready(function () {
+                $(".slider-for").slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    arrows: true,
+                    fade: true,
+                    asNavFor: ".slider-nav",
+                    infinite: true,
+                    speed: 500,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                });
+                $(".slider-nav").slick({
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    asNavFor: ".slider-for",
+                    dots: true,
+                    centerMode: true,
+                    focusOnSelect: true,
+                });
+            });
+        </script>
+    </body>
+</html>

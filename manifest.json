@@ -24,7 +24,7 @@
     "browser_action": {
         "default_icon": "images.png",
         "default_title": "you can also add a tool tip here",
-        "default_popup": "popup2.html"
+        "default_popup": "popup.html"
       },
       "background": {
         "scripts": ["background.js"]

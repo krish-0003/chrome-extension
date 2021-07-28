@@ -1,115 +1,233 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        <!-- Bootstrap CSS -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous"
-        />
-    </head>
-    <script src="https://use.fontawesome.com/5f81295f84.js"></script>
-    <script>
-const tabs = document.querySelector(".wrapper");
-const tabButton = document.querySelectorAll(".tab-button");
-const contents = document.querySelectorAll(".content");
-
-tabs.onclick = e => {
-  const id = e.target.dataset.id;
-  if (id) {
-    tabButton.forEach(btn => {
-      btn.classList.remove("active");
-    });
-    e.target.classList.add("active");
-
-    contents.forEach(content => {
-      content.classList.remove("active");
-    });
-    const element = document.getElementById(id);
-    element.classList.add("active");
-  }
-}
-    </script>
+<html style="max-width: 500px; max-height: 370px">
+    <head> </head>
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="./thumb/slick-theme.css" />
+    <link rel="stylesheet" href="./thumb/slick.css" />
+    <link rel="stylesheet" href="./hello.css" />
+    <!-- <script src="./logo_script.js"></script> -->
     <style>
-.wrapper {
-  width: 590px;
-  margin: auto;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, .1);
-}
-
-.buttonWrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-button {
-  letter-spacing: 3px;
-  border: none;
-  padding: 10px;
-  background-color: #bccbe9;
-  color: #232c3d;
-  font-size: 18px;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-button:hover {
-  background-color: #d5e3ff;
-}
-
-button.active {
-  background-color: white;
-}
-
-.active {
-  background-color: white;
-}
-
-p {
-  text-align: left;
-  padding: 10px;
-}
-
-.content {
-  display: none;
-  padding: 10px 20px;
-}
-
-.content.active {
-  display: block;
-}
-      </style>
-    </head>
+        body {
+            width: 30rem;
+            height: 15rem;
+            /* overflow: hidden;  */
+        }
+    </style>
     <body>
-        <div class="wrapper">
-            <div class="buttonWrapper">
-              <button class="tab-button active" style="border-top-left-radius: 10px;" data-id="home">Home</button>
-              <button class="tab-button" data-id="css">CSS</button>
-              <button class="tab-button" style="border-top-right-radius: 10px;" data-id="script">Script</button>
+        <!-- <h3 style="font-weight: bold; text-align: center">DOM Info</h3>
+        <table border="1" cellpadding="3" style="border-collapse: collapse">
+            <tr>
+                <td nowrap>Total number of elements:</td>
+                <td align="right"><span id="total">N/A</span></td>
+            </tr>
+            <tr>
+                <td nowrap>Number of input elements:</td>
+                <td align="right"><span id="inputs">N/A</span></td>
+            </tr>
+            <tr>
+                <td nowrap>Number of button elements:</td>
+                <td align="right"><span id="buttons">N/A</span></td>
+            </tr>
+            <tr>
+                <td nowrap>Download:</td>
+                <td align="right">
+                    <span id="down"
+                        ><button id="download_now">Download now</button></span
+                    >
+                </td>
+            </tr>
+        </table> -->
+
+        <div class="container">
+            <div class="m-2">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link active"
+                            id="home-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#home"
+                            type="button"
+                            role="tab"
+                            aria-controls="home"
+                            aria-selected="true"
+                        >
+                            Home
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link"
+                            id="profile-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#profile"
+                            type="button"
+                            role="tab"
+                            aria-controls="profile"
+                            aria-selected="false"
+                        >
+                            Profile
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link"
+                            id="contact-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#contact"
+                            type="button"
+                            role="tab"
+                            aria-controls="contact"
+                            aria-selected="false"
+                        >
+                            Contact
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content m-3" id="myTabContent">
+                    <div
+                        class="tab-pane fade show active"
+                        id="home"
+                        role="tabpanel"
+                        aria-labelledby="home-tab"
+                    >
+                        <!-- ///content -->
+                        <!-- <div id="total">
+
+                        </div> -->
+
+                        <!-- //// -->
+                        <div class="text-center">
+                            <div id="loading">
+                                <div
+                                    class="spinner-border text-primary"
+                                    id="toggle_loader"
+                                    role="status"
+                                >
+                                    <span class="visually-hidden"
+                                        >Loading...</span
+                                    >
+                                </div>
+                                <div class="text-primary">
+                                    <h6>
+                                        Wait for some time , once page gets
+                                        loaded
+                                    </h6>
+                                </div>
+                            </div>
+                            <!-- <h5 class="Wait"></h5> -->
+
+                            <div id="title_for_popup_" ></div>
+                            <div class="slider-for" ></div>
+
+                            <!-- ///// -->
+
+                            <div
+                                class="
+                                    d-grid
+                                    gap-2
+                                    col-6
+                                    mx-auto
+                                    download_button
+                                "
+                            ></div>
+                            <div
+                                class="alert alert-success mt-3 p-1"
+                                role="alert"
+                            >
+                                Sponsered By
+                               Cheaperzone.in
+                                is a well-known Wholesale Trader, Supplier of
+                                Home & Kitchen Equipment.
+                            </div>
+                        </div>
+                        <!-- ///content -->
+                    </div>
+                    <div
+                        class="tab-pane fade"
+                        id="profile"
+                        role="tabpanel"
+                        aria-labelledby="profile-tab"
+                    >
+                        <!-- ///content -->
+                        <h5 class="text-primary text-center">
+                            : : We Support These Many Websites : :
+                        </h5>
+
+                        <div id="selection_box"></div>
+
+                        <!-- ///content -->
+                    </div>
+                    <div
+                        class="tab-pane fade"
+                        id="contact"
+                        role="tabpanel"
+                        aria-labelledby="contact-tab"
+                    >
+                        <!-- ///content -->
+                     
+
+                    <div
+                    class="
+                        position-relative
+                        m-2
+                        pb-2
+                        pt-2
+                        sizeofbox
+                        d-inline-flex
+                        justify-content-around
+                        border-primary border-bottom
+                    "
+                >
+                    <div class="form-check form-switch" id="github" >
+                        <label
+                            class="form-check-label me-4"
+                            for="${website_image[index]}"
+                            style="font-size:1rem;cursor: pointer;"
+                            ><img
+                                src="./ss/git.png"
+                                alt=""
+                                style="width: 3rem; height: 3rem; border-radius: 50%;"
+                                class="me-2"
+    
+                            />Github</label
+                        >
+                       
+                    </div>
+                    <!-- /// -->
+
+                    <div class="form-check form-switch" id="linkedin" style="cursor: pointer">
+                        <label
+                            class="form-check-label me-4"
+                            for="${website_image[index]}"
+                            style="font-size:1rem;cursor: pointer"
+                            ><img
+                                src="./ss/linkedin.png"
+                                alt=""
+                                style="width: 3rem; height: 3rem; border-radius: 50%;"
+                                class="me-2"
+    
+                            />Linkedin</label
+                        >
+                       
+                    </div>
+                    <!-- /// -->
+                </div>
+
+                        <!-- ///content -->
+                    </div>
+                </div>
             </div>
-            <div class="contentWrapper">
-              <p class="content active" id="home">
-                Tab 1
-              </p>
-              <p class="content" id="css">
-                Tab 2
-              </p>
-              <p class="content" id="script">
-                Tab 3
-              </p>
-            </div>
-          </div>
-      <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-          crossorigin="anonymous"
-      ></script>
+        </div>
+
+        <script src="./jquery-3.6.0.min.js"></script>
+        <script src="./thumb/slick.js"></script>
+        <!-- <script src="./thumb.js"></script> -->
+
+        <script src="/js/bootstrap.min.js"></script>
+        <!--  -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+        <!-- <script src="./angular-1.8.2/angular.min.js"></script> -->
+
+        <script type="text/javascript" src="./bundle2.js"></script>
     </body>
 </html>
