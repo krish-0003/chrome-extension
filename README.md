@@ -16,13 +16,13 @@
 
 chrome-extension for downloading images from
 
-<img src="./website_logo/amazon_logo.png"  style="width: 3rem; height: 3rem; border-radius: 50%;margin:1rem">
+<img src="./website_logo/amazon_logo.png"  style="width: 1rem; height: 1rem; border-radius: 50%;margin:1rem;pointer-events: none">
 
-<img src="./website_logo/flipkart_logo.png"  style="width: 3rem; height: 3rem; border-radius: 50%;margin:1rem">
+<img src="./website_logo/flipkart_logo.png"  style="width: 3rem; height: 3rem; border-radius: 50%;margin:1rem;pointer-events: none">
 
-<img src="./website_logo/alibaba_logo.png"  style="width: 3rem; height: 3rem; border-radius: 50%;margin:1rem">
+<img src="./website_logo/alibaba_logo.png"  style="width: 3rem; height: 3rem; border-radius: 50%;margin:1rem;pointer-events: none">
 
-<img src="./website_logo/aliexpress_logo.png"  style="width: 3rem; height: 3rem; border-radius: 50%;margin:1rem">
+<img src="./website_logo/aliexpress_logo.png"  style="width: 3rem; height: 3rem; border-radius: 50%;margin:1rem;pointer-events: none">
 
 > [Amazon](www.amazon.in)
 
