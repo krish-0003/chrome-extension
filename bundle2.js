@@ -2287,18 +2287,24 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
 },{"process/browser.js":5,"timers":6}],7:[function(require,module,exports){
 console.log("hi");
-document.getElementById("linkedin").addEventListener("click",()=>{
+document.getElementById("linkedin").addEventListener("click", () => {
     chrome.tabs.create({
         url: "https://www.linkedin.com/in/gondaliya-krish-6407701b8/",
-        active: true
+        active: true,
     });
-})
-document.getElementById("github").addEventListener("click",()=>{
+});
+document.getElementById("github").addEventListener("click", () => {
     chrome.tabs.create({
         url: "https://github.com/krish-0003",
-        active: true
+        active: true,
     });
-})
+});
+// document.getElementById("sponser").addEventListener("click",()=>{
+//     chrome.tabs.create({
+//         url: "https://www.cheaperzone.in/",
+//         active: true
+//     });
+// })
 
 // Once the DOM is ready...
 window.addEventListener("DOMContentLoaded", () => {
@@ -2331,10 +2337,7 @@ let url_list = [
 
 const setDOMInfo = (info) => {
     // document.getElementsByClassName("Wait")[0].innerHTML=`<h5 class="Wait text-primary">Wait for some time , once page gets loaded</h5>`;
-   
-    
-        
-    
+
     window.images_list_for_popup = info.images_list;
     window.original_images_list_popup = info.original_images_list;
     // console.log("SCdfbb", info.image_title);
@@ -2367,7 +2370,6 @@ const setDOMInfo = (info) => {
         class="btn btn-outline-success mt-3"
         type="button"
         id="download_now"
-        id="liveToastBtn"
 
     >
     Download Now
@@ -2379,9 +2381,7 @@ const setDOMInfo = (info) => {
         .getElementById("download_now")
         .addEventListener("click", download_zip);
     // document.getElementById("toggle_loader").classList.remove("spinner-border")
-    document.getElementById(
-        "loading"
-    ).innerHTML = ``;
+    document.getElementById("loading").innerHTML = ``;
     /// });
 };
 
@@ -2420,23 +2420,20 @@ function download_zip() {
     let updated_title;
     let updated_folder_title;
     let extension_name = "--->Download_photo";
+    updated_folder_title =
+        (title_for_popup.substring(0, 80)) + "-cheaperzone"
 
     if (title_for_popup.length > 110) {
         updated_title = title_for_popup.substring(0, 100) + extension_name;
-        updated_folder_title =
-            title_for_popup.substring(0, 20) + extension_name;
         console.log(updated_title, "uuuuu");
     } else {
         updated_title = title_for_popup;
+        // updated_folder_title =title_for_popup;
     }
 
-    // var zipFilename = `${updated_folder_title}.zip`;
-    var zipFilename = "zipfolder.zip";
-    // var urls = [
-    //   'http://image-url-1',
-    //   'http://image-url-2',
-    //   'http://image-url-3'
-    // ];
+    var zipFilename = `${updated_folder_title}.zip`;
+    // var zipFilename = "zipfolder.zip";
+    // var zipFilename = "";
 
     images_list_for_popup.forEach(function (url) {
         console.log("images_list----");
@@ -2450,19 +2447,20 @@ function download_zip() {
             // var filename = `${count}.hihihi.jpg`;
             zip.folder(zipFilename).file(filename, data, { binary: true });
             // zip.file(filename, data, { binary: true });
+            // zip.file(filename, data, { binary: true });
             count++;
             if (count == images_list_for_popup.length) {
                 // var zipFile = zip.generate({ type: "blob" });
                 // FileSaver.saveAs(zipFile, zipFilename);
 
                 zip.generateAsync({ type: "blob" }).then(function (content) {
-                    FileSaver.saveAs(content, zipFilename);
+                    // FileSaver.saveAs(content, zipFilename);
+                    FileSaver.saveAs(content, "");
                 });
             }
         });
     });
 }
-
 
 let website_list = ["Amazon", "Flipkart", "Alibaba", "Aliexpress"];
 let website_url = [
@@ -2510,9 +2508,8 @@ for (let index = 0; index < website_list.length; index++) {
                 </div>
             </div>`;
 }
- document.getElementById("selection_box").innerHTML=final_html;
+document.getElementById("selection_box").innerHTML = final_html;
 // u.insertAdjacentHTML("afterend", final_html);
-
 
 // console.log(document.getElementsByClassName("container"));
 // let website_list = ["Amazon", "Flipkart", "Alibaba", "Aliexpress"];
@@ -2558,38 +2555,38 @@ for (let index = 0; index < website_list.length; index++) {
 // let final_html = "";
 // for (let index = 0; index < final_list.length; index++) {
 //     final_html += `
-            //     <div
-            //     class="
-            //         position-relative
-            //         m-2
-            //         pb-2
-            //         pt-2
-            //         sizeofbox
-            //         d-inline-flex
-            //         justify-content-around
-            //         border-primary border-bottom
-            //     "
-            // >
-            //     <div class="form-check form-switch">
-            //         <label
-            //             class="form-check-label me-4"
-            //             for="${final_list[index].website_list}"
-            //             ><img
-            //                 src="${final_list[index].website_image}"
-            //                 alt=""
-            //                 style="width: 3rem; height: 3rem"
-            //                 class="me-2"
-            //             />${final_list[index].website_list}</label
-            //         >
-            //         <input
-            //             class="form-check-input mt-2 me-4 on_off"
-            //             type="checkbox"
-            //             id="${final_list[index].website_list}"
-            //             value="${final_list[index].website_list}"
-            //             ${final_list[index].checked_not}
-            //         />
-            //     </div>
-            // </div>`;
+//     <div
+//     class="
+//         position-relative
+//         m-2
+//         pb-2
+//         pt-2
+//         sizeofbox
+//         d-inline-flex
+//         justify-content-around
+//         border-primary border-bottom
+//     "
+// >
+//     <div class="form-check form-switch">
+//         <label
+//             class="form-check-label me-4"
+//             for="${final_list[index].website_list}"
+//             ><img
+//                 src="${final_list[index].website_image}"
+//                 alt=""
+//                 style="width: 3rem; height: 3rem"
+//                 class="me-2"
+//             />${final_list[index].website_list}</label
+//         >
+//         <input
+//             class="form-check-input mt-2 me-4 on_off"
+//             type="checkbox"
+//             id="${final_list[index].website_list}"
+//             value="${final_list[index].website_list}"
+//             ${final_list[index].checked_not}
+//         />
+//     </div>
+// </div>`;
 // }
 
 // // console.log(final_list);
