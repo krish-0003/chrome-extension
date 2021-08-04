@@ -5,7 +5,7 @@
 ---
 
 1. first you have to install chrome extention from google web store.
-2. Go any of the E-commerce website which is mention here [Supported website list](#Supported-On-:)
+2. Go any of the E-commerce website which is mention here [Supported website list](#supported-on)
 3. Go to the Product Page
 4. Once the Product Page `Completely loaded` then click to the extention icon.
 5. Click on the `Download Now `buttton and download the .zip file.
