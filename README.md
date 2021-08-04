@@ -16,13 +16,13 @@
 
 chrome-extension for downloading images from
 
-> [Amazon](www.amazon.in)
+> [Amazon](https://www.amazon.in)
 
-> [Flipkart](www.flipkart.com)
+> [Flipkart](https://www.flipkart.com)
 
-> [Alibaba](www.alibaba.com)
+> [Alibaba](https://www.alibaba.com)
 
-> [AliExpress](www.aliExpress.com)
+> [AliExpress](https://www.aliExpress.com)
 
 ## Screen Shots :
 
