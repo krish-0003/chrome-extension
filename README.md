@@ -1,8 +1,14 @@
 # Chrome-extension For Downloading E-commerce Product Images
 
+
+
+
 ## How to Use it:
 
 ---
+
+https://user-images.githubusercontent.com/71602041/128631259-25302e1e-58b0-458c-a5eb-7745dbe24936.mp4
+
 
 1. first you have to install chrome extention from google web store.
 2. Go any of the E-commerce website which is mention here [Supported website list](#supported-on)
