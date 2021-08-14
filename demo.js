@@ -233,10 +233,8 @@ run_js(loc);
 console.log(loc);
 function run_js(loc) {
     switch (loc) {
-        
-
         case (loc.match(/^www.amazon/) || {}).input:
-        // case "www.amazon.co.uk":
+            // case "www.amazon.co.uk":
             get_data();
             ///amazon
             // window.ul1 = document.getElementById("ivThumbs");
@@ -403,10 +401,10 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
         console.log("SCdfbb", title);
         var domInfo = {
             images_list: imgArray,
-            image_title: title,
+            image_title: title.replaceAll("/", " "),
             original_images_list: original_img,
-            
         };
+        console.log(domInfo.image_title);
 
         // Directly respond to the sender (popup),
         // through the specified callback.

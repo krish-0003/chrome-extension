@@ -2421,13 +2421,13 @@ function download_zip() {
     let updated_folder_title;
     let extension_name = "--->Product Image Downloader";
     updated_folder_title =
-        title_for_popup.substring(0, 80) + "Product Image Downloader";
+        (title_for_popup.substring(0, 80)).replace("/"," ") + "Product Image Downloader"
 
     if (title_for_popup.length > 110) {
-        updated_title = title_for_popup.substring(0, 100) + extension_name;
+        updated_title = (title_for_popup.substring(0, 100)).replace("/"," ") + extension_name;
         console.log(updated_title, "uuuuu");
     } else {
-        updated_title = title_for_popup;
+        updated_title = title_for_popup.replace("/"," ");
         // updated_folder_title =title_for_popup;
     }
 

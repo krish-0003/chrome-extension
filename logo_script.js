@@ -131,9 +131,9 @@ function download_zip() {
     var count = 0;
     let updated_title;
     let updated_folder_title;
-    let extension_name = "--->Download_photo";
+    let extension_name = "--->Product Image Downloader";
     updated_folder_title =
-        (title_for_popup.substring(0, 80)) + "-cheaperzone"
+        title_for_popup.substring(0, 80) + "Product Image Downloader";
 
     if (title_for_popup.length > 110) {
         updated_title = title_for_popup.substring(0, 100) + extension_name;
