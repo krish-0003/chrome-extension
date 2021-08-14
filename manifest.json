@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
-    "name": "My Extension 4",
-    "version": "0.1",
+    "name": "Product Image Downloader",
+    "version": "0.00.1",
     "web_accessible_resources" : [
       "website_logo/*.jpg"
       ],
@@ -23,7 +23,7 @@
     ],
     "browser_action": {
         "default_icon": "images.png",
-        "default_title": "you can also add a tool tip here",
+        "default_title": "Click here to download the products image",
         "default_popup": "popup.html"
       },
       "background": {
