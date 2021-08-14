@@ -12,7 +12,6 @@
     "copy-image-clipboard": "^1.0.1",
     "file-saver": "^2.0.5",
     "fs": "*",
-    "html-to-image": "^1.6.2",
     "jszip": "^3.6.0",
     "jszip-utils": "^0.1.0",
     "request": "^2.88.2",
