@@ -154,7 +154,7 @@ function download_zip() {
             // if (err) {
             //     throw err; // or handle the error
             // }
-            var filename = `${count}.${updated_title}.jpg`;
+            var filename = `${count+1}.${updated_title}.jpg`;
             console.log(filename);
             // var filename = `${count}.hihihi.jpg`;
             zip.folder(zipFilename).file(filename, data, { binary: true });

@@ -192,7 +192,7 @@ function get_data4() {
         document.getElementsByClassName("module-pdp-title")[0].innerText;
     console.log(title);
 
-    r = /\_\d{2}x\d{2}.png/g;
+    r = /\_\d{2}x\d{2}.jpg/g;
     // r=/\_50x/g
     for (let i = 0; i < l; i++) {
         let img_link = x[0].getElementsByTagName("img")[i].src;
