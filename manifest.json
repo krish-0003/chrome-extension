@@ -1,5 +1,6 @@
 {
     "manifest_version": 2,
+    "description":"Chrome-extension For Downloading E-commerce Product Images",
     "name": "Product Image Downloader",
     "version": "0.00.1",
     "web_accessible_resources" : [
